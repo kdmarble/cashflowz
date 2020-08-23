@@ -5,7 +5,7 @@ const getRegisteredUser = require("../services/authController")
 
 const Transaction = mongoose.model("Transaction", transactionSchema);
 
-const addTransaction = (req, res) => {
+module.exports = addTransaction = (req, res) => {
   let newTransaction = new Transaction({
     name: req.body.name,
     amount: req.body.amount,
@@ -23,7 +23,7 @@ const addTransaction = (req, res) => {
   });
 };
 
-const getTransactions = (req, res) => {
+module.exports = getTransactions = (req, res) => {
   Transaction.find({ owner: req.decoded.id }, (err, Transaction) => {
     if (err) {
       res.send(err);
@@ -32,6 +32,3 @@ const getTransactions = (req, res) => {
     }
   });
 };
-
-module.exports.addTransaction = addTransaction;
-module.exports.getTransactions = getTransactions;

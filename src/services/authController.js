@@ -6,7 +6,7 @@ const config = require("../config/config");
 
 const User = mongoose.model("User", userSchema);
 
-const registerUser = (req, res) => {
+module.exports = registerUser = (req, res) => {
   let hashedPassword = bcrypt.hashSync(req.body.password);
   let newUser = new User({
     name: req.body.name,
@@ -40,7 +40,7 @@ const registerUser = (req, res) => {
   });
 };
 
-const getRegisteredUser = (req, res) => {
+module.exports = getRegisteredUser = (req, res) => {
   var token = req.token;
   var decoded = req.decoded;
 
@@ -67,7 +67,7 @@ const getRegisteredUser = (req, res) => {
   }
 };
 
-const loginUser = (req, res) => {
+module.exports = loginUser = (req, res) => {
   User.findOne({ email: req.body.email }, (error, User) => {
     if (error) {
       res.status(500).send("There was an error with login");
@@ -90,7 +90,3 @@ const loginUser = (req, res) => {
     }
   });
 };
-
-module.exports.registerUser = registerUser;
-module.exports.getRegisteredUser = getRegisteredUser;
-module.exports.loginUser = loginUser;

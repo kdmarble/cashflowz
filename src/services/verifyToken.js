@@ -2,9 +2,10 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/config");
 const mongoose = require("mongoose");
 const userSchema = require("../models/userModel");
+
 const User = mongoose.model("User", userSchema);
 
-const verifyToken = (req, res, next) => {
+module.exports = verifyToken = (req, res, next) => {
   var token = req.headers["x-json-web-token"];
 
   if (!token) {
@@ -29,5 +30,3 @@ const verifyToken = (req, res, next) => {
     });
   }
 };
-
-module.exports.verifyToken = verifyToken;

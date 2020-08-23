@@ -1,15 +1,9 @@
 const transactionControllers = require("../services/transactionControllers");
 const authController = require("../services/authController");
-const verifyToken = require("../services/verifyToken").verifyToken;
-
-const addTransaction = transactionControllers.addTransaction;
-const getTransactions = transactionControllers.getTransactions;
-const registerUser = authController.registerUser;
-const getRegisteredUser = authController.getRegisteredUser;
-const loginUser = authController.loginUser;
+const verifyToken = require("../services/verifyToken");
 const path = require("path");
 
-const routes = app => {
+module.exports = routes = app => {
   app.route("/").get((req, res) => {
     res.sendStatus(200);
   });
@@ -26,5 +20,3 @@ const routes = app => {
     .post(verifyToken, addTransaction)
     .get(verifyToken, getTransactions);
 };
-
-module.exports = routes;
