@@ -16,7 +16,7 @@ const routes = app => {
 
   app
     .route("/register")
-    .post(verifyToken, registerUser)
+    .post(registerUser)
     .get(verifyToken, getRegisteredUser);
 
   app.route("/login").post(loginUser);

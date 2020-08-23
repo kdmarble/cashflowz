@@ -23,6 +23,11 @@ const transactionSchema = new Schema({
   dateAdded: {
     type: Date,
     default: Date.now
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
   }
 });
 
