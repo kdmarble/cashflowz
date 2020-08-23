@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const routes = require("./routes/transactionRoutes");
+const routes = require("./routes/routes");
 
 const app = express();
 const connectionString = `mongodb+srv://kdmarble:${process.env.DB_PASS}@cashflowz.wgzzf.gcp.mongodb.net/cashflowz?retryWrites=true&w=majority`;
