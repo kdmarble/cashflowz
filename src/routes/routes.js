@@ -1,9 +1,16 @@
-const transactionControllers = require("../services/transactionControllers");
-const authController = require("../services/authController");
-const verifyToken = require("../services/verifyToken");
+import {
+  registerUser,
+  getRegisteredUser,
+  loginUser
+} from "../services/authController";
+import { verifyToken } from "../services/verifyToken";
+import {
+  addTransaction,
+  getTransactions
+} from "../services/transactionControllers";
 const path = require("path");
 
-module.exports = routes = app => {
+export const routes = app => {
   app.route("/").get((req, res) => {
     res.sendStatus(200);
   });

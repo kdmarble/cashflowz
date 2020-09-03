@@ -3,9 +3,7 @@ const config = require("../config/config");
 const mongoose = require("mongoose");
 const userSchema = require("../models/userModel");
 
-const User = mongoose.model("User", userSchema);
-
-module.exports = verifyToken = (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   var token = req.headers["x-json-web-token"];
 
   if (!token) {

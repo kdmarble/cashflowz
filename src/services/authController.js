@@ -4,9 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("../config/config");
 
-const User = mongoose.model("User", userSchema);
-
-module.exports = registerUser = (req, res) => {
+export const registerUser = (req, res) => {
   let hashedPassword = bcrypt.hashSync(req.body.password);
   let newUser = new User({
     name: req.body.name,
@@ -40,7 +38,7 @@ module.exports = registerUser = (req, res) => {
   });
 };
 
-module.exports = getRegisteredUser = (req, res) => {
+export const getRegisteredUser = (req, res) => {
   var token = req.token;
   var decoded = req.decoded;
 
@@ -67,7 +65,7 @@ module.exports = getRegisteredUser = (req, res) => {
   }
 };
 
-module.exports = loginUser = (req, res) => {
+export const loginUser = (req, res) => {
   User.findOne({ email: req.body.email }, (error, User) => {
     if (error) {
       res.status(500).send("There was an error with login");

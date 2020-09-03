@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+import { composeWithMongoose } from "graphql-compose-mongoose";
 
-module.exports = userSchema = new mongoose.Schema({
+export const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -14,3 +15,6 @@ module.exports = userSchema = new mongoose.Schema({
     required: true
   }
 });
+
+export const User = mongoose.model("User", userSchema);
+export const UserTC = composeWithMongoose(User);
