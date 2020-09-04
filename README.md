@@ -20,3 +20,5 @@ Protected via JWT
 ### /graphql
 
 GraphQL endpoint built on top of REST API
+
+Project no longer in development
