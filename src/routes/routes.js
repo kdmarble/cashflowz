@@ -1,29 +1,30 @@
 import {
-  registerUser,
-  getRegisteredUser,
-  loginUser
-} from "../services/authController";
-import { verifyToken } from "../services/verifyToken";
+    registerUser,
+    getRegisteredUser,
+    loginUser,
+} from '../services/authController';
+import { verifyToken } from '../services/verifyToken';
 import {
-  addTransaction,
-  getTransactions
-} from "../services/transactionControllers";
-const path = require("path");
+    addTransaction,
+    getTransactions,
+} from '../services/transactionControllers';
 
 export const routes = app => {
-  app.route("/").get((req, res) => {
-    res.sendStatus(200);
-  });
+    // Home route, sends OK status
+    app.route('/').get((req, res) => {
+        res.sendStatus(200);
+    });
 
-  app
-    .route("/register")
-    .post(registerUser)
-    .get(verifyToken, getRegisteredUser);
+    // User auth route, registers users
+    app.route('/register')
+        .post(registerUser)
+        .get(verifyToken, getRegisteredUser);
 
-  app.route("/login").post(loginUser);
+    // Login route, issues new JWT
+    app.route('/login').post(loginUser);
 
-  app
-    .route("/transactions")
-    .post(verifyToken, addTransaction)
-    .get(verifyToken, getTransactions);
+    // Transaction route, where you can add/get transactions
+    app.route('/transactions')
+        .post(verifyToken, addTransaction)
+        .get(verifyToken, getTransactions);
 };
